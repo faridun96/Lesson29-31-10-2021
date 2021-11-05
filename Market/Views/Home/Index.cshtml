@@ -1,0 +1,36 @@
+﻿@model List<Product>
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">List of products</h1>
+</div>
+<br>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Name</th>
+            <th scope="col">Price</th>
+            <th scope="col">CategoryId</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var product in Model)
+        {
+            <tr>
+                <th scope="row">@product.Id</th>
+                <td>@product.Name</td>
+                <td>@product.Price</td>
+                <td>@product.CategoryId</td>
+                <td>
+                    <input type="button" class="btn btn-primary btn-sm" value="Edit" onclick="location.href='@Url.Action("ShowUpdate", "Product")?id=@product.Id'" />
+                </td>
+                <td>
+                    <input type="button" class="btn btn-danger btn-sm" value="Delete" onclick="location.href='@Url.Action("Delete", "Product")?id=@product.Id'">
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
